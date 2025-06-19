@@ -41,15 +41,6 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.padding(8.dp)
                     )
                 }
-//                Scaffold(
-//                    modifier = Modifier.fillMaxSize()
-//                ) {
-//                    innerPadding ->
-//                    Greeting(
-//                        name = "Labubu",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                }
             }
         }
     }
@@ -92,7 +83,6 @@ fun GreetingText(message: String, from: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     MyTestApplicationTheme {
-        //Greeting("Android")
         GreetingText(message = "Happy Birthday Labubu!", from = "From Lafufu")
     }
 }
