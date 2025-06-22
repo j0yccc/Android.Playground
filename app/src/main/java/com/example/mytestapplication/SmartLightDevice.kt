@@ -3,7 +3,9 @@ package com.example.mytestapplication
 class SmartLightDevice(deviceName: String, deviceCategory: String) :
     SmartDevice(name = deviceName, category = deviceCategory) {
 
-    var brightnessLevel = 0
+    override val deviceType = "Smart Light"
+
+    private var brightnessLevel = 0
         set(value) {
             if (value in 0..100) {
                 field = value
@@ -17,13 +19,13 @@ class SmartLightDevice(deviceName: String, deviceCategory: String) :
 
     //The override keyword informs the Kotlin runtime to execute the code enclosed in the method defined in the subclass.
     override fun turnOn() {
-        deviceStatus = "on"
+        super.turnOn()
         brightnessLevel = 2
         println("$name turned on. The brightness level is $brightnessLevel.")
     }
 
     override fun turnOff() {
-        deviceStatus = "off"
+        super.turnOff()
         brightnessLevel = 0
         println("Smart Light turned off")
     }
@@ -34,12 +36,16 @@ class SmartHome(
     val smartTvDevice: SmartTvDevice,
     val smartLightDevice: SmartLightDevice
 ) {
+    var deviceTurnOnCount = 0
+        private set
 
     fun turnOnTv() {
+        deviceTurnOnCount++
         smartTvDevice.turnOn()
     }
 
     fun turnOffTv() {
+        deviceTurnOnCount--
         smartTvDevice.turnOff()
     }
 
@@ -52,10 +58,12 @@ class SmartHome(
     }
 
     fun turnOnLight() {
+        deviceTurnOnCount++
         smartLightDevice.turnOn()
     }
 
     fun turnOffLight() {
+        deviceTurnOnCount--
         smartLightDevice.turnOff()
     }
 

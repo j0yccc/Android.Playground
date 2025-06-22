@@ -1,13 +1,16 @@
 package com.example.mytestapplication
 
-class SmartTvDevice(deviceName: String, deviceCategory: String) : SmartDevice(name = deviceName, category = deviceCategory) {
-    var speakerVolume = 2
+class SmartTvDevice(deviceName: String, deviceCategory: String) :
+    SmartDevice(name = deviceName, category = deviceCategory) {
+    override val deviceType = "Smart TV"
+
+    private var speakerVolume = 2
         set(value) {
             if (value in 0..100) {
                 field = value
             }
         }
-    var channelNumber = 1
+    private var channelNumber = 1
         set(value) {
             if (value in 0..200) {
                 field = value
@@ -25,7 +28,7 @@ class SmartTvDevice(deviceName: String, deviceCategory: String) : SmartDevice(na
     }
 
     override fun turnOn() {
-        deviceStatus = "on"
+        super.turnOn()
         println(
             "$name is turned on. Speaker volume is set to $speakerVolume and channel number is " +
                     "set to $channelNumber."
@@ -33,7 +36,7 @@ class SmartTvDevice(deviceName: String, deviceCategory: String) : SmartDevice(na
     }
 
     override fun turnOff() {
-        deviceStatus = "off"
+        super.turnOff()
         println("$name turned off")
     }
 }

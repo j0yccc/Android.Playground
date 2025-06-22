@@ -2,8 +2,11 @@ package com.example.mytestapplication
 
 //open keyword before the class keyword to make it extendable for the superclass
 //val keyword to define the primary constructor parameters
-open class SmartDevice(val name: String, val category: String) {
+open class SmartDevice protected constructor(val name: String, val category: String) {
     var deviceStatus = "online"
+        protected set
+
+    open val deviceType = "unknown"
 
     constructor(name: String, category: String, statusCode: Int) : this(name, category) {
         deviceStatus = when (statusCode) {
@@ -14,11 +17,11 @@ open class SmartDevice(val name: String, val category: String) {
     }
 
     open fun turnOn() {
-        println("Smart Device is turned on.")
+        deviceStatus = "on"
     }
 
     open fun turnOff() {
-        println("Smart Device is turned off.")
+        deviceStatus = "off"
     }
 }
 
