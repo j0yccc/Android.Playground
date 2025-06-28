@@ -8,18 +8,36 @@ fun main() {
 //    trick()
 //    trickFunction()
 //    treat()
-    val coins: (Int) -> String = { quantity ->
+
+    //Lambda functions can be assigned to variables
+    val coins1: (Int) -> String = { quantity ->
         "$quantity quarters"
+    }
+
+    //Shorter syntax for function type
+    val coins: (Int) -> String = {
+        "$it quarters"
     }
 
     val cupcake: (Int) -> String = {
         "Have a cupcake!"
     }
 
-    val treatFunction = trickOrTreat(false, coins)
+//    val treatFunction = trickOrTreat(false, coins)
+//    val trickFunction = trickOrTreat(true, null)
+//    treatFunction()
+//    trickFunction()
+
+    //Pass a lambda expression directly into a function
+    val treatFunction = trickOrTreat(false, { "$it quarters" })
     val trickFunction = trickOrTreat(true, null)
-    treatFunction()
+    repeat (4) {
+        treatFunction()
+    }
     trickFunction()
+
+    //Use trailing lambda syntax
+    //val treatFunction = trickOrTreat(false) { "$it quarters" }
 }
 
 fun trickOrTreat(isTrick: Boolean,  extraTreat: ((Int) -> String)?): () -> Unit {
